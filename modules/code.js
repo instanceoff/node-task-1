@@ -1,7 +1,6 @@
 module.exports.transferToNumber = function transferToNumber(urr) {
   arr = urr.trim().split(" ").join().split("");
   if (arr.length !== 10) {
-    console.log(`Массив ${arr}`);
     if (arr.length > 10) {
       for (let i = arr.length; i > 10; i--) {
         arr.pop();
@@ -13,8 +12,6 @@ module.exports.transferToNumber = function transferToNumber(urr) {
         arr.push(0);
       }
     }
-
-    // return transferToNumber(str);
   }
 
   //   let output = "";

@@ -31,11 +31,11 @@ const actions = async (_) => {
   }
 };
 
-// process.stdin.setEncoding("utf8");
-// process.on("exit", (code) => console.log(chalk.yellow.bold("Code: ") + code));
-// process.on("SIGINT", (_) => {
-//   process.exit(0);
-// });
+process.stdin.setEncoding("utf8");
+process.on("exit", (code) => console.log(chalk.yellow.bold("Code: ") + code));
+process.on("SIGINT", (_) => {
+  process.exit(0);
+});
 
 program
   .option("-i, --input <filename>", "An input file")

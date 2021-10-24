@@ -1,7 +1,6 @@
 const { Transform } = require("stream");
 const { transferToNumber } = require("./code");
-
-//const { caesarCipher } = require("./code");
+const valid = require("./valid");
 
 class CaesarTransform extends Transform {
   constructor(input) {
@@ -10,23 +9,11 @@ class CaesarTransform extends Transform {
   }
 
   _transform(chunk, _, done) {
-    // let result = "";
-
-    let result = transferToNumber(chunk.toString("utf8"));
-    // switch (this.action) {
-    //   case "encode":
-    //     result = caesarCipher(chunk.toString("utf8"), this.shift);
-    //     break;
-    //   case "decode":
-    //     result = caesarCipher(chunk.toString("utf8"), -this.shift);
-    //     break;
-    //   default:
-    //     process.stderr.write(" Erorr: Action not found\n");
-    //     process.exit(1);
+    // if (!valid.isNumber(chunk)) {
+    //   process.stdout.write("Value must be a NUMBER | press CTRL + C to exit: ");
+    //   done();
     // }
-
-    // result = "Proshlo";
-
+    let result = transferToNumber(chunk.toString("utf8"));
     this.push(result);
     done();
   }

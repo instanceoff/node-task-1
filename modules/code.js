@@ -1,13 +1,12 @@
 module.exports.transferToNumber = function transferToNumber(urr, task) {
   if (task == 2) {
-    let firstArr = urr.split(" ")[0];
+    let firstArr = String(urr.trim().split(" ")[0]);
 
-    let secArr = urr.split(" ")[1];
+    let secArr = urr.trim().split(" ")[1];
 
     secArr = secArr.split("");
     for (let i = 0; i < secArr.length; i++) {
-      firstArr = firstArr.split(secArr[i]).join();
-      console.log(firstArr);
+      firstArr = firstArr.split(secArr[i]).join("");
     }
     return firstArr;
   }

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/instanceoff/node-task-1#readme",
   "dependencies": {
+    "chalk": "^4.1.2",
     "commander": "^8.3.0",
     "util": "^0.12.4"
   }

@@ -3,9 +3,10 @@ const { transferToNumber } = require("./code");
 const valid = require("./valid");
 
 class CaesarTransform extends Transform {
-  constructor(input) {
+  constructor(input, task) {
     super();
     this.input = input;
+    this.task = task;
   }
 
   _transform(chunk, _, done) {
@@ -13,7 +14,8 @@ class CaesarTransform extends Transform {
     //   process.stdout.write("Value must be a NUMBER | press CTRL + C to exit: ");
     //   done();
     // }
-    let result = transferToNumber(chunk.toString("utf8"));
+
+    let result = transferToNumber(chunk.toString("utf8"), this.task);
     this.push(result);
     done();
   }

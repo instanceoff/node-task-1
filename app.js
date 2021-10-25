@@ -1,6 +1,7 @@
 const fs = require("fs");
 const stream = require("stream");
 const util = require("util");
+const chalk = require("chalk");
 const pipeline = util.promisify(stream.pipeline);
 const program = require("commander");
 
@@ -8,14 +9,14 @@ const valid = require("./modules/valid");
 const CaesarTransform = require("./modules/transform");
 
 const actions = async (_) => {
-  const { input, output } = program.opts();
+  const { task, input, output } = program.opts();
 
   valid.isEmpty(input) &&
     process.stdout.write(
       "Enter the text and press ENTER | press CTRL + C to exit: "
     );
 
-  const ReadableStream = (await !valid.isEmpty(input))
+  const ReadableStream = !valid.isEmpty(input)
     ? fs.createReadStream(input)
     : process.stdin;
 
@@ -24,7 +25,11 @@ const actions = async (_) => {
     : process.stdout;
 
   try {
-    await pipeline(ReadableStream, new CaesarTransform(input), WriteableStream);
+    await pipeline(
+      ReadableStream,
+      new CaesarTransform(input, task),
+      WriteableStream
+    );
   } catch (e) {
     process.stderr.write(` ${e.message}\n`);
     process.exit(1);
@@ -38,6 +43,7 @@ process.on("SIGINT", (_) => {
 });
 
 program
+  .requiredOption("-t, --task <num>", "Tusk number")
   .option("-i, --input <filename>", "An input file")
   .option("-o --output <filename>", "An output file")
   .action(actions);

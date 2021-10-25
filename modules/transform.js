@@ -10,8 +10,8 @@ class CaesarTransform extends Transform {
   }
 
   _transform(chunk, _, done) {
-    // if (!valid.isNumber(chunk)) {
-    //   process.stdout.write("Value must be a NUMBER | press CTRL + C to exit: ");
+    // if (!valid.isNumber(Number(chunk))) {
+    //   process.stdout.write("Value must be a NUMBER");
     //   done();
     // }
 

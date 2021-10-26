@@ -27,7 +27,7 @@ class valid {
   }
 
   static isValid(value) {
-    if (!valid.isNumber(Number(value))) {
+    if (isNaN(Number(value))) {
       process.stdout.write("Value must be a NUMBER\n");
       process.exit(2);
     }
